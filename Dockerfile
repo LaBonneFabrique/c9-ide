@@ -22,17 +22,17 @@ ENV HTTP_FORWARDED_COUNT "1"
 
 #ENV NODE_VERSION 0.12.4
 #ENV NPM_VERSION 2.11.0
-ENV MONGO_VERSION 3.2.7
+#ENV MONGO_VERSION 3.2.7
 
 ENV PATH /root/.c9/bin:/root/.c9/node_modules/.bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN rm -f /etc/cron.daily/logrotate
 
 #MongoDB
-RUN curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-${MONGO_VERSION}.tgz \
-    && tar -xzf mongodb-linux-x86_64-${MONGO_VERSION}.tgz \
-    && mv mongodb-linux-x86_64-${MONGO_VERSION}/bin/* /usr/local/bin \
-    && rm -rf mongodb-linux-x86_64-${MONGO_VERSION}*
+#RUN curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-${MONGO_VERSION}.tgz \
+#    && tar -xzf mongodb-linux-x86_64-${MONGO_VERSION}.tgz \
+#   && mv mongodb-linux-x86_64-${MONGO_VERSION}/bin/* /usr/local/bin \
+#    && rm -rf mongodb-linux-x86_64-${MONGO_VERSION}*
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -60,11 +60,6 @@ RUN locale-gen en_US && \
   locale-gen fr_FR && \
   locale-gen fr_FR.UTF-8 && \
   dpkg-reconfigure locales
-  
-RUN curl -k https://bootstrap.pypa.io/get-pip.py | python3 - \
-	&& curl -k https://bootstrap.pypa.io/get-pip.py | python2 -
-
-RUN echo "PS1='(docker)\u@\h:\w\$ '" >> /root/.bashrc
 
 RUN mkdir -p /workspace /data /var/log/supervisor /var/log/nginx /data/db \
 	&& rm -f /etc/nginx/sites-enabled/* /etc/nginx/sites-available/* \
