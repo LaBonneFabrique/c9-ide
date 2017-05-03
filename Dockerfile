@@ -79,6 +79,9 @@ RUN git clone https://github.com/c9/core.git /c9
 WORKDIR /c9
 RUN scripts/install-sdk.sh \
 	&& sed -i -e 's_127.0.0.1_0.0.0.0_g' /c9/configs/standalone.js
+RUN useradd -ms /bin/bash lbf && adduser lbf sudo
+RUN echo ‘lbf:ar22ni38’ | chpasswd
+USER lbf
 
 RUN curl https://install.meteor.com/ | sh
 
