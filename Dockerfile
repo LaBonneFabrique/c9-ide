@@ -81,10 +81,6 @@ WORKDIR /c9
 RUN scripts/install-sdk.sh \
 	&& sed -i -e 's_127.0.0.1_0.0.0.0_g' /c9/configs/standalone.js
 
-RUN useradd -ms /bin/bash lbf && adduser lbf sudo
-RUN echo lbf:ar22ni38 | chpasswd
-USER lbf
-
 RUN curl https://install.meteor.com/ | sh
 
 VOLUME /etc/nginx/virtual
@@ -106,6 +102,10 @@ RUN apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/lib/cache /var/lib/log \
     && rm -rf /usr/share/doc /usr/share/doc-base /usr/share/man /usr/share/locale /usr/share/zoneinfo \
     && npm cache clear
+
+RUN useradd -ms /bin/bash lbf && adduser lbf sudo
+RUN echo lbf:ar22ni38 | chpasswd
+USER lbf
 
 CMD ["/scripts/start.sh"]
 
