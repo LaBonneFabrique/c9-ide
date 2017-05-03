@@ -75,6 +75,7 @@ RUN echo "alias ctl='supervisorctl -c /etc/supervisor/supervisord.conf'" >> /roo
     && chmod +x /scripts/* \
     && ln -sf /scripts/supervisor.sh /etc/service/supervisor/run
 
+RUN git config --global url."https://".insteadOf git://
 RUN git clone https://github.com/c9/core.git /c9
 WORKDIR /c9
 RUN scripts/install-sdk.sh \
