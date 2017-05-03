@@ -50,7 +50,7 @@ RUN apt-get update \
     phantomjs \
     net-tools
 
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup | sudo bash -\
 	&& apt-get install -y nodejs
 
 ENV LANG en_US.UTF-8
