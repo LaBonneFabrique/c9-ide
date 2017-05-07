@@ -104,7 +104,7 @@ RUN apt-get autoremove -y \
     && npm cache clear
 
 RUN useradd -ms /bin/bash lbf && adduser lbf sudo
-RUN echo lbf:ar22ni38 | chpasswd
+RUN echo lbf:lsdm38! | chpasswd
 USER lbf
 
 CMD ["/scripts/start.sh"]
